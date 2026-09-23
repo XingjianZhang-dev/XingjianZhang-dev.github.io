@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xingjian (Scott) Zhang</title>
+  <meta name="description" content="Xingjian (Scott) Zhang — M.S. student in Artificial Intelligence Engineering at Carnegie Mellon University, working on efficient sequence modeling: attention, linear recurrent models and KV-cache reuse for long-context language models.">
+  <meta name="author" content="Xingjian Zhang">
+  <link rel="canonical" href="https://xingjianzhang-dev.github.io/">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Xingjian (Scott) Zhang">
+  <meta property="og:description" content="M.S. student in AI Engineering at Carnegie Mellon. Efficient attention, linear recurrent models and KV-cache reuse for long-context LLMs.">
+  <meta property="og:url" content="https://xingjianzhang-dev.github.io/">
+  <meta name="twitter:card" content="summary">
+
+  <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1014" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+
+  <script>
+    // Apply a saved theme before first paint to avoid a flash.
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Xingjian Zhang",
+    "alternateName": "Scott Zhang",
+    "url": "https://xingjianzhang-dev.github.io/",
+    "email": "mailto:xingjiaz@andrew.cmu.edu",
+    "jobTitle": "M.S. Student, Artificial Intelligence Engineering",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "Carnegie Mellon University" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "New York University" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Pittsburgh", "addressRegion": "PA", "addressCountry": "US" },
+    "knowsAbout": ["Sequence modeling", "Efficient attention", "Linear recurrent models", "State-space models", "KV cache", "Retrieval-augmented generation"],
+    "sameAs": ["https://github.com/XingjianZhang-dev", "https://www.linkedin.com/in/xingjian-zhang-928670271/", "https://scholar.google.com/citations?user=1PVbG88AAAAJ"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="layout">
+
+    <!-- ============================== Sidebar ============================== -->
+    <aside class="profile" aria-label="Profile">
+      <div class="avatar" aria-hidden="true">
+        <span class="monogram">XZ</span>
+        <!-- Drop a square photo at assets/photo.jpg and it replaces the monogram automatically. -->
+        <img src="assets/photo.jpg" alt="" width="112" height="112" onerror="this.remove()">
+      </div>
+
+      <h1 class="name">Xingjian Zhang</h1>
+      <p class="aka">Scott</p>
+      <p class="role">M.S. Student, AI Engineering<br>Carnegie Mellon University</p>
+
+      <ul class="contact">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <span>Pittsburgh, PA</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>
+          <a href="mailto:xingjiaz@andrew.cmu.edu">xingjiaz@andrew.cmu.edu</a>
+          <button class="copy-email" type="button" data-copy="xingjiaz@andrew.cmu.edu" aria-label="Copy email address" title="Copy email address">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
+          </button>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+          <a href="https://github.com/XingjianZhang-dev">GitHub</a>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 2 9.5l10 5.5 10-5.5Z"/><path d="M6 12v4.5c0 1.4 2.7 3 6 3s6-1.6 6-3V12"/></svg>
+          <a href="https://scholar.google.com/citations?user=1PVbG88AAAAJ&amp;hl=en">Google Scholar</a>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+          <a href="https://www.linkedin.com/in/xingjian-zhang-928670271/">LinkedIn</a>
+        </li>
+        <li class="cv-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+          <a href="cv.pdf">Resume (PDF)</a>
+        </li>
+      </ul>
+
+      <nav class="toc" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+        <a href="#code">Code</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <span class="theme-label">Dark mode</span>
+      </button>
+    </aside>
+
+    <!-- ============================== Main ============================== -->
+    <main id="main">
+
+      <!-- About -->
+      <section id="about" aria-labelledby="about-h">
+        <h2 id="about-h" class="visually-hidden">About</h2>
+
+        <p class="lede">I study how sequence models remember — and how to make that memory cheaper without changing what the model does.</p>
+
+        <p>I'm an M.S. student in Artificial Intelligence Engineering in the Department of Electrical and Computer Engineering at <a href="https://www.cmu.edu/">Carnegie Mellon University</a>. Before CMU, I received a B.A. in Computer Science, with minors in Mathematics and Economics, from <a href="https://www.nyu.edu/">New York University</a>.</p>
+
+        <p>My research sits between architecture and inference: efficient attention, linear recurrent and state-space models, and the key–value caches that long-context language models depend on — when they can be reused, compressed or restructured while keeping the model's behavior intact. I started out in AI theory and have moved toward applied, measurable systems work. I write my own code end to end and release the code and data behind my papers.</p>
+
+        <p>Alongside language models, I collaborate on machine-learning-enhanced multi-criteria decision models for transport safety, published in <i>Scientific Reports</i>, <i>Results in Engineering</i> and <i>Knowledge-Based Systems</i>.</p>
+
+        <p class="status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Open to ML and research engineering roles.</span>
+          <a href="#contact">Get in touch&nbsp;→</a>
+        </p>
+
+        <div class="interests" role="list">
+          <div class="interest" role="listitem">
+            <h3>Efficient long-context inference</h3>
+            <p>KV-cache reuse, compression and repair for long-context and retrieval-augmented generation, measured against full recomputation.</p>
+          </div>
+          <div class="interest" role="listitem">
+            <h3>Recurrent memory architectures</h3>
+            <p>Gated linear attention, DeltaNet-style models and Mamba: how a fixed-size state allocates capacity, and where recall breaks down.</p>
+          </div>
+          <div class="interest" role="listitem">
+            <h3>ML for decision support</h3>
+            <p>Hybrid weighting, aggregation and clustering models for ranking and grouping countries on road-safety indicators.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- News -->
+      <section id="news" aria-labelledby="news-h">
+        <h2 id="news-h">News</h2>
+        <ol class="news">
+          <li><time datetime="2026-09">Sep 2026</time><p><a href="#safe-kv">SAFE-KV</a> was accepted to Findings of AACL-IJCNLP 2026.</p></li>
+          <li><time datetime="2026-09">Sep 2026</time><p>Released open <a href="#code">reproduction packages</a> for four transport-safety papers — every table and figure regenerates from one command.</p></li>
+          <li><time datetime="2026-08">Aug 2026</time><p>Started the M.S. in Artificial Intelligence Engineering at Carnegie Mellon University.</p></li>
+          <li><time datetime="2026-05">May 2026</time><p>Graduated from New York University with a B.A. in Computer Science.</p></li>
+          <li><time datetime="2025-12">Dec 2025</time><p>First-author paper on a machine-learning-nested MCDM model published in <i>Results in Engineering</i>.</p></li>
+          <li><time datetime="2025-10">Oct 2025</time><p>Two papers on hybrid decision models for transport safety published in <i>Scientific Reports</i>.</p></li>
+        </ol>
+      </section>
+
+      <!-- Publications -->
+      <section id="publications" aria-labelledby="pub-h">
+        <h2 id="pub-h">Publications</h2>
+
+        <h3 class="group-label">Language models</h3>
+
+        <article class="pub" id="safe-kv">
+          <div class="pub-side"><span class="venue">AACL Findings</span><span class="year">2026</span></div>
+          <div class="pub-main">
+            <h4 class="pub-title"><a href="https://github.com/XingjianZhang-dev/safe-kv">SAFE-KV: Causal Suffix Repair for Behavior-Preserving Non-Prefix KV Cache Reuse in RAG</a></h4>
+            <p class="authors"><span class="me">Xingjian Zhang</span></p>
+            <p class="where"><i>Findings of the Association for Computational Linguistics: AACL-IJCNLP 2026</i> · to appear</p>
+            <p class="summary">Treats non-prefix KV-cache reuse in retrieval-augmented generation as a behavior-preservation problem — full prefill is the reference and answers are compared by normalized short-answer equivalence — and repairs the causal suffix so that reused caches keep the model's outputs.</p>
+            <div class="pub-links">
+              <span class="badge">Sole author</span>
+              <a class="btn" href="https://github.com/XingjianZhang-dev/safe-kv">Code</a>
+              <button class="btn" type="button" data-bib aria-expanded="false">BibTeX</button>
+            </div>
+            <div class="bib" hidden><button class="copy" type="button">Copy</button><pre>@inproceedings{zhang2026safekv,
+  title     = {{SAFE-KV}: Causal Suffix Repair for Behavior-Preserving
+               Non-Prefix {KV} Cache Reuse in {RAG}},
+  author    = {Zhang, Xingjian},
+  booktitle = {Findings of the Association for Computational Linguistics:
+               AACL-IJCNLP 2026},
+  year      = {2026}
+}</pre></div>
+          </div>
+        </article>
+
+        <article class="pub" id="advgamebench">
+          <div class="pub-side"><span class="venue">arXiv</span><span class="year">2025</span></div>
+          <div class="pub-main">
+            <h4 class="pub-title"><a href="https://arxiv.org/abs/2506.12012">Tracing LLM Reasoning Processes with Strategic Games: A Framework for Planning, Revision, and Resource-Constrained Decision Making</a></h4>
+            <p class="authors">Xiaopeng Yuan, <span class="me">Xingjian Zhang</span>, Ke Xu, Yifan Xu, Lijun Yu, Jindong Wang, Yushun Dong, Haohan Wang</p>
+            <p class="where">Preprint, <i>arXiv:2506.12012</i> (2025)</p>
+            <p class="summary">AdvGameBench: strategic games (tower defense, auto-battler, turn-based) that expose how LLMs plan, revise and act under resource budgets, with process metrics such as over-correction risk, correction success and over-budget rate related to win rate.</p>
+            <div class="pub-links">
+              <a class="btn" href="https://arxiv.org/abs/2506.12012">arXiv</a>
+              <button class="btn" type="button" data-bib aria-expanded="false">BibTeX</button>
+            </div>
+            <div class="bib" hidden><button class="copy" type="button">Copy</button><pre>@article{yuan2025tracing,
+  title   = {Tracing {LLM} Reasoning Processes with Strategic Games:
+             A Framework for Planning, Revision, and Resource-Constrained
+             Decision Making},
+  author  = {Yuan, Xiaopeng and Zhang, Xingjian and Xu, Ke and Xu, Yifan and
+             Yu, Lijun and Wang, Jindong and Dong, Yushun and Wang, Haohan},
+  journal = {arXiv preprint arXiv:2506.12012},
+  year    = {2025}
+}</pre></div>
+          </div>
+        </article>
+
+        <h3 class="group-label">Machine learning for transport safety</h3>
+
+        <article class="pub" id="rineng-2026">
+          <div class="pub-side"><span class="venue">Results Eng.</span><span class="year">2026</span></div>
+          <div class="pub-main">
+            <h4 class="pub-title"><a href="https://doi.org/10.1016/j.rineng.2025.108543">Machine learning nested MCDM model to enhance decision reliability for transport safety engineering</a></h4>
+            <p class="authors" data-authors>
+              <span class="short"><span class="me">Xingjian Zhang</span>, Nanbo (Aaron) Zhang, Jialin Li, …, Faan Chen</span>
+              <span class="full" hidden><span class="me">Xingjian Zhang</span>, Nanbo (Aaron) Zhang, Jialin Li, Qintao Li, Xingze Liu, Chuanpu (Lukas) Cao, Hao Mao, Ruikang Yan, Yunlong Qi, Xinyi (Chenny) Yang, Jialun Li, Aaron Kaiqiang Zhou, Xu Yan, Hanrui Feng, Faan Chen</span>
+              <button class="more" type="button" aria-expanded="false">15 authors · show all</button>
+            </p>
+            <p class="where"><i>Results in Engineering</i>, 29, 108543 (2026)</p>
+            <p class="summary">Nests PSI weighting, AROMAN aggregation and a Gaussian mixture model with t-SNE to rank and group the G20 countries on nine road-safety performance indicators across four waves from 2010 to 2023, with multilevel robustness analyses.</p>
+            <div class="pub-links">
+              <span class="badge">First author</span>
+              <a class="btn" href="https://doi.org/10.1016/j.rineng.2025.108543">Paper</a>
+              <a class="btn" href="https://github.com/XingjianZhang-dev/transport-safety-psi-aroman-gmm">Code</a>
+              <button class="btn" type="button" data-bib aria-expanded="false">BibTeX</button>
+            </div>
+            <div class="bib" hidden><button class="copy" type="button">Copy</button><pre>@article{zhang2026nested,
+  title   = {Machine learning nested {MCDM} model to enhance decision
+             reliability for transport safety engineering},
+  author  = {Zhang, Xingjian and Zhang, Nanbo and Li, Jialin and
+             Li, Qintao and Liu, Xingze and Cao, Chuanpu and
+             Mao, Hao and Yan, Ruikang and Qi, Yunlong and
+             Yang, Xinyi and Li, Jialun and Zhou, Aaron Kaiqiang and
+             Yan, Xu and Feng, Hanrui and Chen, Faan},
+  journal = {Results in Engineering},
+  volume  = {29},
+  pages   = {108543},
+  year    = {2026},
+  doi     = {10.1016/j.rineng.2025.108543}
+}</pre></div>
+          </div>
+        </article>
+
+        <article class="pub" id="scirep-36467">
+          <div class="pub-side"><span class="venue">Sci. Rep.</span><span class="year">2025</span></div>
+          <div class="pub-main">
+            <h4 class="pub-title"><a href="https://doi.org/10.1038/s41598-025-21297-8">A hybrid machine learning-enhanced MCDM model for transport safety engineering</a></h4>
+            <p class="authors" data-authors>
+              <span class="short"><span class="me">Xingjian Zhang</span>, Haowen Chen, Jingxuan Chen, …, Faan Chen</span>
+              <span class="full" hidden><span class="me">Xingjian Zhang</span>, Haowen Chen, Jingxuan Chen, Hanrui Feng, Mingshuo Liu, Xushuai Zhang, Aaron Kaiqiang Zhou, Ziyan Li, Anqi Song, Ziang Wu, Surui Cheng, Yuhan Gan, Minghe Liu, Junyu Quan, Shuolei Gao, Mingren Zheng, Faan Chen</span>
+              <button class="more" type="button" aria-expanded="false">17 authors · show all</button>
+            </p>
+            <p class="where"><i>Scientific Reports</i>, 15, 36467 (2025)</p>
+            <p class="summary">Combines DCRITIC weighting, WASPAS aggregation and k-means with a graph-based technique to assess transport safety in 35 member states of the Organization of American States on 15 indicators for 2010 and 2020.</p>
+            <div class="pub-links">
+              <span class="badge">First author</span>
+              <a class="btn" href="https://doi.org/10.1038/s41598-025-21297-8">Paper</a>
+              <a class="btn" href="https://github.com/XingjianZhang-dev/transport-safety-mcdm">Code</a>
+              <button class="btn" type="button" data-bib aria-expanded="false">BibTeX</button>
+            </div>
+            <div class="bib" hidden><button class="copy" type="button">Copy</button><pre>@article{zhang2025hybrid,
+  title   = {A hybrid machine learning-enhanced {MCDM} model for transport
+             safety engineering},
+  author  = {Zhang, Xingjian and Chen, Haowen and Chen, Jingxuan and
+             Feng, Hanrui and Liu, Mingshuo and Zhang, Xushuai and
+             Zhou, Aaron Kaiqiang and Li, Ziyan and Song, Anqi and
+             Wu, Ziang and Cheng, Surui and Gan, Yuhan and
+             Liu, Minghe and Quan, Junyu and Gao, Shuolei and
+             Zheng, Mingren and Chen, Faan},
+  journal = {Scientific Reports},
+  volume  = {15},
+  pages   = {36467},
+  year    = {2025},
+  doi     = {10.1038/s41598-025-21297-8}
+}</pre></div>
+          </div>
+        </article>
+
+        <article class="pub" id="scirep-35099">
+          <div class="pub-side"><span class="venue">Sci. Rep.</span><span class="year">2025</span></div>
+          <div class="pub-main">
+            <h4 class="pub-title"><a href="https://doi.org/10.1038/s41598-025-18918-7">Road safety measurement with reliability using an advanced hybrid decision model</a></h4>
+            <p class="authors" data-authors>
+              <span class="short">Jiaxu Jin, Hanrui Feng, Haojing Gao, …, <span class="me">Xingjian Zhang</span>, …, Faan Chen</span>
+              <span class="full" hidden>Jiaxu Jin, Hanrui Feng, Haojing Gao, Hongyang Hua, Mingshuo Liu, Hedong Liang, Hongping Qi, Lei Sun, Fang Tian, Jiachen Yao, Aaron Kaiqiang Zhou, Yiyun Zhang, <span class="me">Xingjian Zhang</span>, Ziyan Li, Dongxu Qin, Mingren Zheng, Haocheng Yang, Faan Chen</span>
+              <button class="more" type="button" aria-expanded="false">18 authors · show all</button>
+            </p>
+            <p class="where"><i>Scientific Reports</i>, 15, 35099 (2025)</p>
+            <p class="summary">An HDVP–BeVarMax decision model that measures road safety with reliability across the 13 East Asia Summit countries on 18 indicators and four waves from 2012 to 2023.</p>
+            <div class="pub-links">
+              <a class="btn" href="https://doi.org/10.1038/s41598-025-18918-7">Paper</a>
+              <a class="btn" href="https://github.com/XingjianZhang-dev/road-safety-hdvp-bevarmax">Code</a>
+              <button class="btn" type="button" data-bib aria-expanded="false">BibTeX</button>
+            </div>
+            <div class="bib" hidden><button class="copy" type="button">Copy</button><pre>@article{jin2025road,
+  title   = {Road safety measurement with reliability using an advanced
+             hybrid decision model},
+  author  = {Jin, Jiaxu and Feng, Hanrui and Gao, Haojing and
+             Hua, Hongyang and Liu, Mingshuo and Liang, Hedong and
+             Qi, Hongping and Sun, Lei and Tian, Fang and
+             Yao, Jiachen and Zhou, Aaron Kaiqiang and
+             Zhang, Yiyun and Zhang, Xingjian and Li, Ziyan and
+             Qin, Dongxu and Zheng, Mingren and Yang, Haocheng and
+             Chen, Faan},
+  journal = {Scientific Reports},
+  volume  = {15},
+  pages   = {35099},
+  year    = {2025},
+  doi     = {10.1038/s41598-025-18918-7}
+}</pre></div>
+          </div>
+        </article>
+
+        <article class="pub" id="kbs-2024">
+          <div class="pub-side"><span class="venue">KBS</span><span class="year">2024</span></div>
+          <div class="pub-main">
+            <h4 class="pub-title"><a href="https://doi.org/10.1016/j.knosys.2024.112286">An integrated MCDM model with enhanced decision support in transport safety using machine learning optimization</a></h4>
+            <p class="authors" data-authors>
+              <span class="short">Zeyu Guo, Jiani Liu, Xiangchen Liu, …, <span class="me">Xingjian Zhang</span>, …, Faan Chen</span>
+              <span class="full" hidden>Zeyu Guo, Jiani Liu, Xiangchen Liu, Ziyue Meng, Meilin Pu, Haoyan Wu, Xu Yan, Gilbert Yang, <span class="me">Xingjian Zhang</span>, Changlan Chen, Faan Chen</span>
+              <button class="more" type="button" aria-expanded="false">11 authors · show all</button>
+            </p>
+            <p class="where"><i>Knowledge-Based Systems</i>, 301, 112286 (2024)</p>
+            <p class="summary">A LOPCOW–MULTIMOORA–DBSCAN model with grid search and k-means that evaluates transport safety in 30 European countries on 11 indicators for 2010 and 2020.</p>
+            <div class="pub-links">
+              <a class="btn" href="https://doi.org/10.1016/j.knosys.2024.112286">Paper</a>
+              <a class="btn" href="https://github.com/XingjianZhang-dev/road-safety-lopcow-multimoora-dbscan">Code</a>
+              <button class="btn" type="button" data-bib aria-expanded="false">BibTeX</button>
+            </div>
+            <div class="bib" hidden><button class="copy" type="button">Copy</button><pre>@article{guo2024integrated,
+  title   = {An integrated {MCDM} model with enhanced decision support in
+             transport safety using machine learning optimization},
+  author  = {Guo, Zeyu and Liu, Jiani and Liu, Xiangchen and
+             Meng, Ziyue and Pu, Meilin and Wu, Haoyan and
+             Yan, Xu and Yang, Gilbert and Zhang, Xingjian and
+             Chen, Changlan and Chen, Faan},
+  journal = {Knowledge-Based Systems},
+  volume  = {301},
+  pages   = {112286},
+  year    = {2024},
+  doi     = {10.1016/j.knosys.2024.112286}
+}</pre></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" aria-labelledby="exp-h">
+        <h2 id="exp-h">Research collaborations</h2>
+        <ol class="exp">
+          <li>
+            <div class="exp-head">
+              <h3>Efficient Sequence Modeling</h3>
+              <span class="exp-date">May 2025 – Jan 2026</span>
+            </div>
+            <p class="exp-org">With Prof. Eunsol Choi and Yilun Kuang (NYU)</p>
+            <ul>
+              <li>Designed SubMLR, a multi-level low-rank attention architecture between quadratic attention and constant-memory linear RNNs; it outperformed strong baselines on Zoology's MQAR task.</li>
+              <li>Built hierarchical chunk-compression models on linear attention (about 10% higher accuracy on synthetic tasks at matched FLOPs) and a FLOPs-matched training and evaluation pipeline on Slurm with PyTorch, Triton and flash-linear-attention.</li>
+            </ul>
+          </li>
+          <li>
+            <div class="exp-head">
+              <h3>LLM Reasoning Benchmarks</h3>
+              <span class="exp-date">Feb 2025 – Jun 2025</span>
+            </div>
+            <p class="exp-org">Remote collaboration with Prof. Haohan Wang (UIUC)</p>
+            <ul>
+              <li>Co-developed <a href="#advgamebench">AdvGameBench</a>, a strategic-game benchmark of how LLMs plan and revise under resource budgets, and defined its process metrics.</li>
+            </ul>
+          </li>
+          <li>
+            <div class="exp-head">
+              <h3>Chart Question Answering</h3>
+              <span class="exp-date">May 2025 – Jan 2026</span>
+            </div>
+            <p class="exp-org">Remote collaboration with Prof. Qingyun Wang (William &amp; Mary)</p>
+            <ul>
+              <li>Extended ChartMoE (InternLM-XComposer2-VL-7B) with nine chart-type experts and built a self-verified Program-of-Thought ChartQA set for SFT and DPO/GRPO.</li>
+            </ul>
+          </li>
+          <li>
+            <div class="exp-head">
+              <h3>Transport Safety Modeling</h3>
+              <span class="exp-date">Jan 2024 – Sep 2025</span>
+            </div>
+            <p class="exp-org">Remote collaboration with Dr. Faan Chen (Harvard)</p>
+            <ul>
+              <li>Built hybrid clustering and multi-criteria decision models for multi-country road-safety assessment, leading to four journal papers (two first-author) and four open reproduction packages.</li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Code -->
+      <section id="code" aria-labelledby="code-h">
+        <h2 id="code-h">Code</h2>
+        <p class="section-note">Each paper ships with a public artifact: installable code, the data it runs on, and scripts that regenerate the published tables and figures.</p>
+
+        <div class="repos">
+          <a class="repo" href="https://github.com/XingjianZhang-dev/safe-kv">
+            <span class="repo-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v16H7.5A2.5 2.5 0 0 0 5 20.5Z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5"/></svg>safe-kv</span>
+            <span class="repo-desc">Package, configs, processed data and per-example results for SAFE-KV. Regenerates all 33 tables and 5 figures from shipped results on CPU; 135 unit tests.</span>
+            <span class="repo-meta"><span class="lang">Python</span><span>MIT</span><span>AACL 2026 Findings</span></span>
+          </a>
+          <a class="repo" href="https://github.com/XingjianZhang-dev/transport-safety-psi-aroman-gmm">
+            <span class="repo-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v16H7.5A2.5 2.5 0 0 0 5 20.5Z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5"/></svg>transport-safety-psi-aroman-gmm</span>
+            <span class="repo-desc">Single-command pipeline for the G20 case study: decision matrices for four waves, PSI–AROMAN rankings, robustness analyses and GMM + t-SNE grouping.</span>
+            <span class="repo-meta"><span class="lang">Python</span><span>MIT</span><span>Results Eng. 2026</span></span>
+          </a>
+          <a class="repo" href="https://github.com/XingjianZhang-dev/transport-safety-mcdm">
+            <span class="repo-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v16H7.5A2.5 2.5 0 0 0 5 20.5Z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5"/></svg>transport-safety-mcdm</span>
+            <span class="repo-desc">DCRITIC–WASPAS–k-means for 35 OAS countries. Parses the WHO source reports through to all 9 tables and 13 figures, offline in under two minutes.</span>
+            <span class="repo-meta"><span class="lang">Python</span><span>MIT</span><span>Sci. Rep. 2025</span></span>
+          </a>
+          <a class="repo" href="https://github.com/XingjianZhang-dev/road-safety-hdvp-bevarmax">
+            <span class="repo-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v16H7.5A2.5 2.5 0 0 0 5 20.5Z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5"/></svg>road-safety-hdvp-bevarmax</span>
+            <span class="repo-desc">HDVP–BeVarMax for 13 East Asia Summit countries on 18 indicators and four waves, with the robustness and benchmarking analyses.</span>
+            <span class="repo-meta"><span class="lang">Python</span><span>MIT</span><span>Sci. Rep. 2025</span></span>
+          </a>
+          <a class="repo" href="https://github.com/XingjianZhang-dev/road-safety-lopcow-multimoora-dbscan">
+            <span class="repo-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v16H7.5A2.5 2.5 0 0 0 5 20.5Z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5"/></svg>road-safety-lopcow-multimoora-dbscan</span>
+            <span class="repo-desc">LOPCOW–MULTIMOORA–DBSCAN with grid search and k-means for 30 European countries on 11 indicators, 2010 and 2020.</span>
+            <span class="repo-meta"><span class="lang">Python</span><span>MIT</span><span>KBS 2024</span></span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section id="education" aria-labelledby="edu-h">
+        <h2 id="edu-h">Education</h2>
+        <ol class="edu">
+          <li>
+            <div>
+              <h3>Carnegie Mellon University</h3>
+              <p>M.S. in Artificial Intelligence Engineering, Electrical and Computer Engineering</p>
+              <p class="edu-place">Pittsburgh, PA</p>
+            </div>
+            <span class="edu-date">2026 – 2027 <span class="dim">(expected)</span></span>
+          </li>
+          <li>
+            <div>
+              <h3>New York University</h3>
+              <p>B.A. in Computer Science · Minors in Mathematics and Economics</p>
+              <p class="edu-place">New York, NY</p>
+            </div>
+            <span class="edu-date">May 2026</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h">Contact</h2>
+        <p class="section-note">I'm open to ML and research engineering roles. Email is the fastest way to reach me.</p>
+
+        <div class="email-card">
+          <span class="email-label">Email</span>
+          <span class="email-address">xingjiaz@andrew.cmu.edu</span>
+          <span class="email-actions">
+            <button class="btn btn-primary" type="button" data-copy="xingjiaz@andrew.cmu.edu">Copy address</button>
+            <a class="btn" href="mailto:xingjiaz@andrew.cmu.edu">Open in mail app</a>
+          </span>
+        </div>
+
+        <div class="contact-links">
+          <a class="btn" href="cv.pdf">Resume (PDF)</a>
+          <a class="btn" href="https://www.linkedin.com/in/xingjian-zhang-928670271/">LinkedIn</a>
+          <a class="btn" href="https://scholar.google.com/citations?user=1PVbG88AAAAJ&amp;hl=en">Google Scholar</a>
+          <a class="btn" href="https://github.com/XingjianZhang-dev">GitHub</a>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p>© 2026 Xingjian Zhang · <a href="#contact">Contact</a> · <a href="https://github.com/XingjianZhang-dev">GitHub</a></p>
+        <p class="dim">Last updated September 2026</p>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="assets/site.js" defer></script>
+</body>
+</html>
