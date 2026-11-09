@@ -139,7 +139,7 @@
         <div class="interests" role="list">
           <div class="interest" role="listitem">
             <h3>Efficient long-context inference</h3>
-            <p>KV-cache reuse, compression and repair for long-context and retrieval-augmented generation, measured against full recomputation.</p>
+            <p>KV-cache reuse, compression and repair, and compact external memory for frozen models, in long-context and retrieval-augmented generation, measured against full recomputation.</p>
           </div>
           <div class="interest" role="listitem">
             <h3>Recurrent memory architectures</h3>
@@ -156,6 +156,7 @@
       <section id="news" aria-labelledby="news-h">
         <h2 id="news-h">News</h2>
         <ol class="news">
+          <li><time datetime="2026-11">Nov 2026</time><p><a href="#ascent">ASCENT</a>, on compact external memory for frozen long-context language models, was published in <i>Array</i>.</p></li>
           <li><time datetime="2026-09">Sep 2026</time><p><a href="#safe-kv">SAFE-KV</a> was accepted to Findings of AACL-IJCNLP 2026.</p></li>
           <li><time datetime="2026-09">Sep 2026</time><p>Released open <a href="#code">reproduction packages</a> for four transport-safety papers; each rebuilds the published results with a single command.</p></li>
           <li><time datetime="2026-08">Aug 2026</time><p>Started the M.S. in Artificial Intelligence Engineering at Carnegie Mellon University.</p></li>
@@ -180,6 +181,7 @@
             <p class="summary">Treats non-prefix KV-cache reuse in retrieval-augmented generation as a behavior-preservation problem — full prefill is the reference and answers are compared by normalized short-answer equivalence — and repairs the causal suffix so that reused caches keep the model's outputs.</p>
             <div class="pub-links">
               <span class="badge">Sole author</span>
+              <a class="btn" href="https://arxiv.org/abs/2610.15186">arXiv</a>
               <a class="btn" href="https://github.com/XingjianZhang-dev/safe-kv">Code</a>
               <button class="btn" type="button" data-bib aria-expanded="false">BibTeX</button>
             </div>
@@ -189,7 +191,35 @@
   author    = {Zhang, Xingjian},
   booktitle = {Findings of the Association for Computational Linguistics:
                AACL-IJCNLP 2026},
-  year      = {2026}
+  year      = {2026},
+  eprint    = {2610.15186},
+  archivePrefix = {arXiv}
+}</pre></div>
+          </div>
+        </article>
+
+        <article class="pub" id="ascent">
+          <div class="pub-side"><span class="venue">Array</span><span class="year">2026</span></div>
+          <div class="pub-main">
+            <h4 class="pub-title"><a href="https://doi.org/10.1016/j.array.2026.101399">ASCENT: Scale-Complementary External State for Frozen Long-Context Language Models</a></h4>
+            <p class="authors"><span class="me">Xingjian Zhang</span></p>
+            <p class="where"><i>Array</i>, 32, 101399 (2026)</p>
+            <p class="summary">A target-blind writer compresses a long input into a compact external state before the question arrives, and a frozen reader answers from that state. The state lifts five 7–8B readers by 67–86 points on 16K-token BABILong (Qwen2.5-7B: 33% → 100%) and needs 78–84× fewer reader FLOPs than full context (SmolLM2).</p>
+            <div class="pub-links">
+              <span class="badge">Sole author</span>
+              <a class="btn" href="https://doi.org/10.1016/j.array.2026.101399">Paper</a>
+              <a class="btn" href="https://github.com/XingjianZhang-dev/ascent">Code</a>
+              <button class="btn" type="button" data-bib aria-expanded="false">BibTeX</button>
+            </div>
+            <div class="bib" hidden><button class="copy" type="button">Copy</button><pre>@article{zhang2026ascent,
+  title   = {{ASCENT}: Scale-Complementary External State for Frozen
+             Long-Context Language Models},
+  author  = {Zhang, Xingjian},
+  journal = {Array},
+  volume  = {32},
+  pages   = {101399},
+  year    = {2026},
+  doi     = {10.1016/j.array.2026.101399}
 }</pre></div>
           </div>
         </article>
@@ -415,6 +445,11 @@
             <span class="repo-desc">Package, configs, processed data and per-example results for SAFE-KV. Regenerates all 33 tables and 5 figures from shipped results on CPU; 135 unit tests.</span>
             <span class="repo-meta"><span class="lang">Python</span><span>MIT</span><span>AACL 2026 Findings</span></span>
           </a>
+          <a class="repo" href="https://github.com/XingjianZhang-dev/ascent">
+            <span class="repo-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v16H7.5A2.5 2.5 0 0 0 5 20.5Z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5"/></svg>ascent</span>
+            <span class="repo-desc">Code, frozen configurations and per-row records for ASCENT. One command re-verifies the result manifests, re-renders every manuscript table and prints every reported number on CPU in about ten seconds.</span>
+            <span class="repo-meta"><span class="lang">Python</span><span>Apache-2.0</span><span>Array 2026</span></span>
+          </a>
           <a class="repo" href="https://github.com/XingjianZhang-dev/transport-safety-psi-aroman-gmm">
             <span class="repo-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v16H7.5A2.5 2.5 0 0 0 5 20.5Z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5"/></svg>transport-safety-psi-aroman-gmm</span>
             <span class="repo-desc">Single-command pipeline for the G20 case study: decision matrices for four waves, PSI–AROMAN rankings, robustness analyses and GMM + t-SNE grouping.</span>
@@ -485,7 +520,7 @@
 
       <footer class="site-footer">
         <p>© 2026 Xingjian Zhang · <a href="#contact">Contact</a> · <a href="https://github.com/XingjianZhang-dev">GitHub</a></p>
-        <p class="dim">Last updated October 2026</p>
+        <p class="dim">Last updated November 2026</p>
       </footer>
     </main>
   </div>
