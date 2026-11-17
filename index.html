@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Xingjian (Scott) Zhang</title>
-  <meta name="description" content="Xingjian (Scott) Zhang — M.S. student in Artificial Intelligence Engineering at Carnegie Mellon University, working on efficient sequence modeling: attention, linear recurrent models and KV-cache reuse for long-context language models.">
+  <meta name="description" content="Xingjian (Scott) Zhang — M.S. student in Artificial Intelligence Engineering at Carnegie Mellon University, working on efficient and reliable long-context LLM inference: KV-cache compression and reuse, evidence memory and efficient sequence models.">
   <meta name="author" content="Xingjian Zhang">
   <link rel="canonical" href="https://xingjianzhang-dev.github.io/">
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Xingjian (Scott) Zhang">
-  <meta property="og:description" content="M.S. student in AI Engineering at Carnegie Mellon. Efficient attention, linear recurrent models and KV-cache reuse for long-context LLMs.">
+  <meta property="og:description" content="M.S. student in AI Engineering at Carnegie Mellon. KV-cache compression and reuse, evidence memory and efficient sequence models for long-context LLMs.">
   <meta property="og:url" content="https://xingjianzhang-dev.github.io/">
   <meta name="twitter:card" content="summary">
 
@@ -126,7 +126,9 @@
 
         <p>I'm an M.S. student in Artificial Intelligence Engineering in the Department of Electrical and Computer Engineering at <a href="https://www.cmu.edu/">Carnegie Mellon University</a>. Before CMU, I received a B.A. in Computer Science, with minors in Mathematics and Economics, from <a href="https://www.nyu.edu/">New York University</a>.</p>
 
-        <p>My research sits between architecture and inference: efficient attention, linear recurrent and state-space models, and the key–value caches that long-context language models depend on — when they can be reused, compressed or restructured while keeping the model's behavior intact. I started out in AI theory and have moved toward applied, measurable systems work. I write my own code end to end and release the code and data behind my papers.</p>
+        <p>My research sits between architecture and inference: efficient attention, linear recurrent and state-space models, and the key–value caches that long-context language models depend on — when they can be reused, compressed or restructured while keeping the model's behavior intact. I bring a background in AI theory to applied, measurable systems work. I write my own code end to end and release the code and data behind my papers.</p>
+
+        <p>Four of my sole-author papers were accepted in 2026, including <a href="#authoritykv">AuthorityKV</a> at the EACL 2027 main conference and <a href="#proofkv">ProofKV</a> in Findings of EACL 2027.</p>
 
         <p>Alongside language models, I have also collaborated on machine-learning-enhanced multi-criteria decision models for transport safety, published in <i>Scientific Reports</i>, <i>Results in Engineering</i> and <i>Knowledge-Based Systems</i>.</p>
 
@@ -156,6 +158,7 @@
       <section id="news" aria-labelledby="news-h">
         <h2 id="news-h">News</h2>
         <ol class="news">
+          <li><time datetime="2026-11">Nov 2026</time><p><a href="#authoritykv">AuthorityKV</a> was accepted to the EACL 2027 main conference and <a href="#proofkv">ProofKV</a> to Findings of EACL 2027; code, data and camera-ready papers are <a href="#code">public</a>.</p></li>
           <li><time datetime="2026-11">Nov 2026</time><p><a href="#safe-kv">SAFE-KV</a> was published in Findings of IJCNLP-AACL 2026 (<a href="https://aclanthology.org/2026.findings-aacl.155/">ACL Anthology</a>).</p></li>
           <li><time datetime="2026-11">Nov 2026</time><p><a href="#ascent">ASCENT</a>, on compact external memory for frozen long-context language models, was published in <i>Array</i>.</p></li>
           <li><time datetime="2026-09">Sep 2026</time><p><a href="#safe-kv">SAFE-KV</a> was accepted to Findings of AACL-IJCNLP 2026.</p></li>
@@ -172,6 +175,59 @@
         <h2 id="pub-h">Publications</h2>
 
         <h3 class="group-label">Language models</h3>
+
+        <article class="pub" id="authoritykv">
+          <div class="pub-side"><span class="venue">EACL</span><span class="year">2027</span></div>
+          <div class="pub-main">
+            <h4 class="pub-title"><a href="https://github.com/XingjianZhang-dev/AuthorityKV/blob/main/paper/AuthorityKV_EACL2027.pdf">AuthorityKV: Preventing Authority Reversals in KV-Cache Compression</a></h4>
+            <p class="authors"><span class="me">Xingjian Zhang</span></p>
+            <p class="where"><i>Proceedings of EACL 2027</i> (main conference), to appear</p>
+            <p class="summary">Shows that KV-cache compression can silently break a prompt's instruction hierarchy: across three instruction-tuned models, three widely used compressors reverse 2,055 of 7,200 decisions that the uncompressed models get right. AuthorityKV, a training-free rule for any score-based compressor at an unchanged budget, removes all of these reversals with annotated span boundaries and 91% of them using only the chat roles and source provenance an orchestrator already holds; it raises system-prompt compliance on System-IFEval by 36–46 points and cuts successful prompt injections from 7 of 64 to 0.</p>
+            <div class="pub-links">
+              <span class="badge">Sole author</span>
+              <a class="btn" href="https://github.com/XingjianZhang-dev/AuthorityKV/blob/main/paper/AuthorityKV_EACL2027.pdf">Paper</a>
+              <a class="btn" href="https://github.com/XingjianZhang-dev/AuthorityKV">Code</a>
+              <a class="btn" href="https://huggingface.co/datasets/XingjianZhangDev/AuthorityKV">Data</a>
+              <button class="btn" type="button" data-bib aria-expanded="false">BibTeX</button>
+            </div>
+            <div class="bib" hidden><button class="copy" type="button">Copy</button><pre>@inproceedings{zhang2027authoritykv,
+  title     = {{AuthorityKV}: Preventing Authority Reversals in
+               {KV}-Cache Compression},
+  author    = {Zhang, Xingjian},
+  booktitle = {Proceedings of the European Chapter of the Association
+               for Computational Linguistics (EACL 2027)},
+  year      = {2027},
+  publisher = {Association for Computational Linguistics},
+  note      = {To appear}
+}</pre></div>
+          </div>
+        </article>
+
+        <article class="pub" id="proofkv">
+          <div class="pub-side"><span class="venue">EACL Findings</span><span class="year">2027</span></div>
+          <div class="pub-main">
+            <h4 class="pub-title"><a href="https://github.com/XingjianZhang-dev/ProofKV/blob/main/paper/proofkv_eacl2027.pdf">ProofKV: Compiling Complete Evidence Chains into Reusable KV Memory for Structured-Evidence QA</a></h4>
+            <p class="authors"><span class="me">Xingjian Zhang</span></p>
+            <p class="where"><i>Findings of the Association for Computational Linguistics: EACL 2027</i>, to appear</p>
+            <p class="summary">A multi-hop answer needs every link of an evidence chain, which token-by-token eviction and prompt compression do not keep together. ProofKV reads a document once into a reusable evidence index, composes evidence chains for each question with a small scorer and prefills the decoder only over the chains that fit a KV-byte budget. It is the best compact method in every setting across five structured-evidence QA tasks, two decoders and three token caps — +19.33 F1 over LLMLingua-2 and +13.32 F1 over same-scorer independent ranking at identical token counts — and serves 1.16–1.84× faster than full context with a reused index.</p>
+            <div class="pub-links">
+              <span class="badge">Sole author</span>
+              <a class="btn" href="https://github.com/XingjianZhang-dev/ProofKV/blob/main/paper/proofkv_eacl2027.pdf">Paper</a>
+              <a class="btn" href="https://github.com/XingjianZhang-dev/ProofKV">Code</a>
+              <button class="btn" type="button" data-bib aria-expanded="false">BibTeX</button>
+            </div>
+            <div class="bib" hidden><button class="copy" type="button">Copy</button><pre>@inproceedings{zhang2027proofkv,
+  title     = {{ProofKV}: Compiling Complete Evidence Chains into Reusable
+               {KV} Memory for Structured-Evidence {QA}},
+  author    = {Zhang, Xingjian},
+  booktitle = {Findings of the Association for Computational Linguistics:
+               EACL 2027},
+  year      = {2027},
+  publisher = {Association for Computational Linguistics},
+  note      = {To appear}
+}</pre></div>
+          </div>
+        </article>
 
         <article class="pub" id="safe-kv">
           <div class="pub-side"><span class="venue">AACL Findings</span><span class="year">2026</span></div>
@@ -400,8 +456,8 @@
             </div>
             <p class="exp-org">With Prof. Eunsol Choi and Yilun Kuang (NYU)</p>
             <ul>
-              <li>Designed efficient attention architectures between quadratic attention and constant-memory linear RNNs.</li>
-              <li>Built a FLOPs-matched training and evaluation pipeline on Slurm with PyTorch and Triton.</li>
+              <li>Designed SubMLR, a multi-level low-rank attention architecture between quadratic attention and constant-memory linear RNNs that beat strong baselines on Zoology MQAR.</li>
+              <li>Built chunk-compression models on linear attention (~10% higher accuracy at matched FLOPs) and a FLOPs-matched training and evaluation pipeline on Slurm with PyTorch and Triton.</li>
             </ul>
           </li>
           <li>
@@ -409,7 +465,7 @@
               <h3>LLM Reasoning Benchmarks</h3>
               <span class="exp-date">Feb 2025 – Jun 2025</span>
             </div>
-            <p class="exp-org">Remote collaboration with Prof. Haohan Wang (UIUC)</p>
+            <p class="exp-org">Collaboration with Prof. Haohan Wang (UIUC)</p>
             <ul>
               <li>Co-developed <a href="#advgamebench">AdvGameBench</a>, a strategic-game benchmark of how LLMs plan and revise under resource budgets, and defined its process metrics.</li>
             </ul>
@@ -419,9 +475,9 @@
               <h3>Chart Question Answering</h3>
               <span class="exp-date">May 2025 – Jan 2026</span>
             </div>
-            <p class="exp-org">Remote collaboration with Prof. Qingyun Wang (William &amp; Mary)</p>
+            <p class="exp-org">Collaboration with Prof. Qingyun Wang (William &amp; Mary)</p>
             <ul>
-              <li>Worked on mixture-of-experts vision-language models for chart reasoning and built verified Program-of-Thought training data for SFT and DPO/GRPO.</li>
+              <li>Added nine chart-type experts to the ChartMoE vision-language model for chart reasoning and built verified Program-of-Thought training data for SFT and DPO/GRPO.</li>
             </ul>
           </li>
           <li>
@@ -429,9 +485,9 @@
               <h3>Transport Safety Modeling</h3>
               <span class="exp-date">Jan 2024 – Sep 2025</span>
             </div>
-            <p class="exp-org">Remote collaboration with Dr. Faan Chen (Harvard)</p>
+            <p class="exp-org">Collaboration with Dr. Faan Chen (Harvard)</p>
             <ul>
-              <li>Built hybrid clustering and multi-criteria decision models for multi-country road-safety assessment, leading to four journal papers (two first-author) and four open reproduction packages.</li>
+              <li>Built hybrid clustering and multi-criteria decision models for multi-country road-safety assessment, leading to four first- or co-first-author journal papers and four open reproduction packages.</li>
             </ul>
           </li>
         </ol>
@@ -443,6 +499,16 @@
         <p class="section-note">Each repository contains the code, the data it runs on, and scripts that regenerate the published results.</p>
 
         <div class="repos">
+          <a class="repo" href="https://github.com/XingjianZhang-dev/AuthorityKV">
+            <span class="repo-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v16H7.5A2.5 2.5 0 0 0 5 20.5Z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5"/></svg>AuthorityKV</span>
+            <span class="repo-desc">Training-free authority-tier wrapper for NVIDIA KVPress, the IH-CacheBench benchmark and the records behind every reported number; a CPU quickstart shows the effect in one command. Dataset on the Hugging Face Hub.</span>
+            <span class="repo-meta"><span class="lang">Python</span><span>Apache-2.0</span><span>EACL 2027</span></span>
+          </a>
+          <a class="repo" href="https://github.com/XingjianZhang-dev/ProofKV">
+            <span class="repo-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v16H7.5A2.5 2.5 0 0 0 5 20.5Z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5"/></svg>ProofKV</span>
+            <span class="repo-desc">Evidence index, chain scorer, compact prefill and vLLM paged-KV serving route, with per-example result records, scorer checkpoints and a table-by-table reproduction guide.</span>
+            <span class="repo-meta"><span class="lang">Python</span><span>MIT</span><span>EACL 2027 Findings</span></span>
+          </a>
           <a class="repo" href="https://github.com/XingjianZhang-dev/safe-kv">
             <span class="repo-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v16H7.5A2.5 2.5 0 0 0 5 20.5Z"/><path d="M5 20.5A2.5 2.5 0 0 0 7.5 23H19v-5"/></svg>safe-kv</span>
             <span class="repo-desc">Package, configs, processed data and per-example results for SAFE-KV. Regenerates all 33 tables and 5 figures from shipped results on CPU; 135 unit tests.</span>
